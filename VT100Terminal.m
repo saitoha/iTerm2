@@ -2698,6 +2698,11 @@ static VT100TCC decode_string(unsigned char *datap,
                     // Set bracketed paste mode
                     bracketedPasteMode_ = mode;
                     break;
+                    
+                case 7727:
+                    // Set application escape mode
+                    applicationEscapeMode_ = mode;
+                    break;
 
                 case 47:
                     // alternate screen buffer mode
@@ -3171,6 +3176,11 @@ static VT100TCC decode_string(unsigned char *datap,
 - (BOOL)bracketedPasteMode
 {
     return bracketedPasteMode_;
+}
+
+- (BOOL)applicationEscapeMode
+{
+    return applicationEscapeMode_;
 }
 
 - (void)setMouseMode:(MouseMode)mode

@@ -370,6 +370,11 @@ typedef enum {
 
     // http://www.xfree86.org/current/ctlseqs.html#Bracketed%20Paste%20Mode
     BOOL bracketedPasteMode_;
+
+    // Application Escape Mode (DECSET 7727) is proposed by MinTTY
+    // http://code.google.com/p/mintty/wiki/CtrlSeqs#Escape_keycode
+    BOOL applicationEscapeMode_;
+
 }
 
 + (void)initialize;
@@ -461,6 +466,7 @@ typedef enum {
 - (void)setDisableSmcupRmcup:(BOOL)value;
 
 - (BOOL)bracketedPasteMode;
+- (BOOL)applicationEscapeMode;
 
 - (void)setInsertMode:(BOOL)mode;
 - (void)setCursorMode:(BOOL)mode;

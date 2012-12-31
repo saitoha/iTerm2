@@ -1805,8 +1805,11 @@ static NSString *kTmuxFontChanged = @"kTmuxFontChanged";
                 dataLength = 1;
                 [self writeTask:[NSData dataWithBytes:dataPtr length:dataLength]];
             }
-
-            if (send_str != NULL) {
+            if ([TERMINAL applicationEscapeMode] && send_pchr < 0 && *send_str == '\033' && send_strlen == 1) {
+                dataPtr = (unsigned char*)"\033O[";
+                dataLength = 3;
+                [self writeTask:[NSData dataWithBytes:dataPtr length:dataLength]];
+            } else if (send_str != NULL) {
                 dataPtr = send_str;
                 dataLength = send_strlen;
                 [self writeTask:[NSData dataWithBytes:dataPtr length:dataLength]];
