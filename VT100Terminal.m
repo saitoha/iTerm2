@@ -752,6 +752,10 @@ static int getCSIParamCanonically(unsigned char *datap,
 
 cancel:
     param->cmd = 0xff;
+    if (*datap == VT100CC_ESC) {
+        --datap;
+        *datap = 0x0;
+    }
     return datap - orgp;
 }
 
